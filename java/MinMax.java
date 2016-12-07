@@ -17,17 +17,15 @@ public class MinMax {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-        long sum = Stream.of(scanner.nextLine().split(" ")).mapToLong(x -> check(x)).sum();
+        long sum = Stream.of(scanner.nextLine().split(" ")).mapToLong(MinMax::check).sum();
 
         System.out.println((sum - max) + " " + (sum - min));
     }
 
     public static long check(String x) {
         long number = Long.parseLong(x);
-        if (number > max)
-            max = number;
-        if (number < min)
-            min = number;
+        max = number > max ? number : max;
+        min = number < min ? number : min;
         return number;
     }
 }
